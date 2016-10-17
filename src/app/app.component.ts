@@ -7,5 +7,5 @@ import { NavComponent} from './nav/nav.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+changes: string = "I'll show you changes";
 }
