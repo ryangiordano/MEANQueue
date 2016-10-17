@@ -10,7 +10,8 @@ export class QueueService {
   constructor(private _http: Http) { }
   queueMembers: Queue[] = [];
   getMembers(){
-    return this._http.get('/queue').map(response=>{
+    // return this._http.get('/queue').map(response=>{
+      return this._http.get('https://thedaruma:test123@ds021346.mlab.com:21346/thedaruma').map(response=>{
       const data = response.json().obj;
       let objs: any[] = [];
       for(let i=0; i< data.length; i++){
@@ -25,7 +26,7 @@ export class QueueService {
     const body = JSON.stringify(queueMember);
     const headers = new Headers({'Content-Type': 'application/json'});
     const token = localStorage.getItem('token') ? '?token=' +localStorage.getItem('token') : '';
-    return this._http.post('/queue'+token, body, {headers: headers})
+    return this._http.post('https://thedaruma:test123@ds021346.mlab.com:21346/thedaruma'+token, body, {headers: headers})
     .map(response=> {
       const data= response.json().obj;
       let queue = new Queue(data.name, data.reason, data.bankId, data.concluded);
