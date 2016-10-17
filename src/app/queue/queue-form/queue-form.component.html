@@ -1,0 +1,30 @@
+<h2>Enter the Queue</h2>
+<form class="form-group" [formGroup]="form" novalidate>
+  <fieldset>
+    <div class="form-group row">
+      <label for="name" class="col-lg-2 control-label">Name</label>
+      <div class="col-lg-8">
+        <input class="form-control" type="text" name="name" value="" formControlName="name">
+        <div class="error" *ngIf="isErrorVisible('name', 'required')">
+          Please enter your name
+        </div>
+      </div>
+
+    </div>
+    <div class="form-group row">
+      <label for="name" class="col-lg-2 control-label">Reason for visit</label>
+      <div class="col-lg-8">
+        <select class="form-control" type="text" name="reason" value="" formControlName="reason">
+          <option selected disabled hidden>Choose here</option>
+          <option *ngFor="let formOption of formOptions"value="{{formOption.name}}" >{{formOption.name}}</option>
+        </select>
+
+          <div class="error" *ngIf="isErrorVisible('reason', 'required')">
+            Please enter your name
+          </div>
+      </div>
+
+    </div>
+    <button type="button" name="button" class="btn btn-primary" [disabled]="!form.valid" (click)="onSubmit()">Join the Queue</button>
+</fieldset>
+</form>
