@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
 var mongoose = require('mongoose');
-mongoose.connect('https://thedaruma:test123@ds021346.mlab.com:21346/thedaruma');
+mongoose.connect('thedaruma:test123@ds021346.mlab.com:21346/thedaruma');
 
 // mongoose.connect('localhost:27017/mean-angular');
 
