@@ -42,6 +42,7 @@ mongoose.Promise = global.Promise;
 
 //routes
 app.use('/queue', queueRoutes);
+app.use('/', appRoutes);
 // app.use('/message',messageRoutes);
 
 
