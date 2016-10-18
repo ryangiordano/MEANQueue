@@ -16,8 +16,13 @@ import { QueueComponent } from './queue/queue.component';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
-import { LoginComponent } from './login/login.component';
-import { LoginFormComponent } from './login/login-form/login-form.component';
+
+import { AuthComponent } from './auth/auth.component';
+import { LoginComponent } from './auth/login/login.component';
+import { LoginFormComponent } from './auth/login-form/login-form.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { RegisterFormComponent } from './auth/register-form/register-form.component';
+
 import { QueueFormComponent } from './queue/queue-form/queue-form.component';
 import { QueueListComponent } from './queue/queue-list/queue-list.component';
 import { QueueItemComponent } from './queue/queue-item/queue-item.component';
@@ -30,8 +35,11 @@ import { QueueItemComponent } from './queue/queue-item/queue-item.component';
     AboutComponent,
     HomeComponent,
     NavComponent,
+    AuthComponent,
     LoginComponent,
     LoginFormComponent,
+    RegisterComponent,
+    RegisterFormComponent,
     QueueFormComponent,
     QueueListComponent,
     QueueItemComponent
