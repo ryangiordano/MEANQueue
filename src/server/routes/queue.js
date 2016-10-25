@@ -2,8 +2,9 @@ var express = require('express');
 var router = express.Router();
 var jwt = require('jsonwebtoken');
 
-var Queue = require('./queue-member.model');
-var User = require('./user.model');
+var Queue = require('../models/queue-member.model');
+var User = require('../models/user.model');
+
 
 router.get('/', function(req, res, next) {
   Queue.find().exec(function(err, docs) {

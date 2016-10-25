@@ -10,7 +10,7 @@ export class QueueService {
   constructor(private _http: Http) { }
   queueMembers: Queue[] = [];
   getMembers(){
-    return this._http.get('/queue').map(response=>{
+    return this._http.get('/queue-api').map(response=>{
       // return this._http.get('https://thedaruma.github.io/MEANQueue/queue').map(response=>{
       const data = response.json().obj;
       let objs: any[] = [];
@@ -27,7 +27,7 @@ export class QueueService {
     const headers = new Headers({'Content-Type': 'application/json'});
     const token = localStorage.getItem('token') ? '?token=' +localStorage.getItem('token') : '';
     // return this._http.post('https://thedaruma.github.io/MEANQueue/queue'+token, body, {headers: headers})
-    return this._http.post('/queue'+token, body, {headers: headers}) 
+    return this._http.post('/queue-api'+token, body, {headers: headers}) 
 
     .map(response=> {
       const data= response.json().obj;

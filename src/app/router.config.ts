@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 
 export const RouterConfig: Routes= [
   {
-    path: 'home',
+    path: 'queue',
     component: QueueComponent
   },
   {
@@ -19,11 +19,11 @@ export const RouterConfig: Routes= [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'queue',
     pathMatch: 'full'
   },
   {
     path: '**',
-    redirectTo: 'home'
+    redirectTo: 'queue'
   }
 ]

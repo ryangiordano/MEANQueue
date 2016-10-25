@@ -5,10 +5,12 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 
+var engine = require('consolidate');
+
 //import routes
-var appRoutes = require('./appRoutes');
-var queueRoutes = require('./queue');
-var userRoutes = require('./users');
+var appRoutes = require('./routes/appRoutes');
+var queueRoutes = require('./routes/queue');
+var userRoutes = require('./routes/users');
 
 var app = express();
 app.set('port', (process.env.PORT || 3000));
@@ -20,6 +22,9 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 
+app.set('views', path.join(__dirname, 'src'));
+app.engine('html', engine.handlebars);
+app.set('view engine', 'html');
 
 app.use(function(req,res,next){
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -41,7 +46,7 @@ var db = mongoose.connection;
 mongoose.Promise = global.Promise;
 
 //routes
-app.use('/queue', queueRoutes);
+app.use('/queue-api', queueRoutes);
 app.use('/', appRoutes);
 // app.use('/message',messageRoutes);
 
@@ -52,9 +57,14 @@ db.once('open', function() {
 
 
 // all other routes are handled by Angular
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname,'/../../dist/index.html'));
+// app.get('/*', function(req, res) {
+//   res.sendFile(path.join(__dirname,'/../../dist/index.html'));
+// });
+
+app.use(function(req, res, next) {
+  return res.render(path.join(__dirname,'/../../dist/index'));
 });
+
 
 app.listen(app.get('port'), function() {
   console.log('Angular 2 Full Stack listening on port '+app.get('port'));
