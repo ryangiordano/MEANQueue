@@ -1,0 +1,33 @@
+<form [formGroup]="form" novalidate class="form-horizontal">
+  <fieldset>
+      <legend>Log in to Admin</legend>
+      <div class="form-group">
+        <label for="email" class="col-lg-3 control-label">Email</label>
+        <div class="col-lg-7">
+          <input class="form-control" type="email" name="email" value="" formControlName="email">
+          <div class="error" *ngIf="isErrorVisible('email', 'required')">
+            Please enter your name
+          </div>
+        </div>
+
+      </div>
+      <div class="form-group">
+        <label for="password" class="col-lg-3 control-label">Password</label>
+        <div class="col-lg-7">
+          <input class="form-control" type="password" name="password" value="" formControlName="password">
+
+            <div class="error" *ngIf="isErrorVisible('password', 'required')">
+              Please enter a password
+            </div>
+        </div>
+
+      </div>
+      <div class="form-group">
+        <div class="col-lg-9 col-lg-offset-3">
+          <button type="submit" class="btn btn-primary submit" [disabled]="!form.valid" (click)="login()">Login</button>
+        </div>
+      </div>
+
+  </fieldset>
+
+</form>
