@@ -32,7 +32,8 @@ export class QueueFormComponent implements OnInit {
       'name':['', Validators.required],
       'reason':['', Validators.required],
       'bankId': ['BANK'],
-      'concluded': [false]
+      'concluded': [false],
+      'branchId': ['BRANCH']
     })
   }
 
@@ -40,7 +41,7 @@ export class QueueFormComponent implements OnInit {
 
   }
   onSubmit(){
-    const queueMember: Queue = new Queue(this.form.value.name, this.form.value.reason, this.form.value.bankId, this.form.value.concluded);
+    const queueMember: Queue = new Queue(this.form.value.name, this.form.value.reason, this.form.value.bankId, this.form.value.concluded, this.form.value.branchId, null);
     this._queueService.addMember(queueMember)
     .subscribe(
       data=>{

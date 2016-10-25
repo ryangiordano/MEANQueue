@@ -39,7 +39,8 @@ router.post('/', function(req, res, err) {
     name: req.body.name,
     reason: req.body.reason,
     bankId: req.body.bankId,
-    concluded: req.body.concluded
+    concluded: req.body.concluded,
+    branchId: req.body.branchId
     // user: doc
   });
   queue.save(function(err, result) {

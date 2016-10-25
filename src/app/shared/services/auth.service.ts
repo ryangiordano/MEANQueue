@@ -20,11 +20,11 @@ export class AuthService {
   logout(){
     localStorage.clear();
   }
-  registerNewUser(user:User){
+  registerNewUser(user:User):Observable<any>{
     console.log(user);
     const body = JSON.stringify(user);
     const headers = new Headers({'Content-Type': 'application/json'});
-    this._http.post('/user', body, {headers: headers})
+    return this._http.post('/user', body, {headers: headers})
     .map(response=>{
       response.json()
     })

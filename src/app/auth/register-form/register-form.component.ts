@@ -8,18 +8,22 @@ import { User } from '../../shared/models/user';
   styleUrls: ['./register-form.component.css']
 })
 export class RegisterFormComponent implements OnInit {
-  user:User;
   form:FormGroup;
   constructor(private _authService: AuthService, private formBuilder: FormBuilder ) {
     this.form = this.formBuilder.group({
       'firstName': ['', Validators.required],
       'lastName': ['', Validators.required],
       'email': ['', Validators.required],
+      // 'email': ['', [Validators.required, Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")]],
       'password': ['', Validators.required]
     })
   }
-  submit(){
-    return this._authService.registerNewUser();
+  onSubmit(){
+    const user = new User(this.form.value.firstName, this.form.value.lastName, this.form.value.email, this.form.value.password, 'BANK', 'BRANCH' )
+    this._authService.registerNewUser(user).subscribe(
+      data=> console.log(data),
+      error=> console.log(error)
+    )
   }
   isErrorVisible(field:string, error:string){
     return this.form.controls[field].dirty && this.form.controls[field].errors && this.form.controls[field].errors[error];

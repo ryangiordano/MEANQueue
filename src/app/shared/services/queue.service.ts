@@ -15,7 +15,7 @@ export class QueueService {
       const data = response.json().obj;
       let objs: any[] = [];
       for (let i = 0; i < data.length; i++) {
-        let queue = new Queue(data[i].name, data[i].reason, 'BANK', false);
+        let queue = new Queue( data[i].name, data[i].reason, 'BANK', false, "BRANCH");
         objs.push(queue)
       };
       return objs;
@@ -28,10 +28,10 @@ export class QueueService {
     const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : '';
     // return this._http.post('https://thedaruma.github.io/MEANQueue/queue'+token, body, {headers: headers})
     return this._http.post('/queue-api' + token, body, { headers: headers })
-
       .map(response => {
         const data = response.json().obj;
-        let queue = new Queue(data.name, data.reason, data.bankId, data.concluded);
+        console.log(data);
+        let queue = new Queue(data.name, data.reason, data.bankId, data.concluded, data.branchId, data._id);
         return queue;
       })
       .catch(error => Observable.throw(error.json()));
@@ -41,7 +41,8 @@ export class QueueService {
     console.log(queueMember);
     this.queueMembers.splice(this.queueMembers.indexOf(queueMember), 1);
     const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token'):'';
-    return this._http.delete(`/queue-api/${queueMember}`);
+    console.log(queueMember);
+    return this._http.delete(`/queue-api/${queueMember.queueId}`);
 
   }
 

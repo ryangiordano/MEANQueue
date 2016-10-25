@@ -10,8 +10,11 @@ var schema = new Schema({
     required: true
   },
   bankId: String,
-  concluded: Boolean
+  branchId: String,
+  concluded: Boolean,
+  queueId: String
 });
+
 
 
 module.exports = mongoose.model('QueueMember', schema);
