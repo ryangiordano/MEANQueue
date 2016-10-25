@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginFormComponent } from './login-form/login-form.component'; 
+import { LoginFormComponent } from '../login-form/login-form.component'; 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

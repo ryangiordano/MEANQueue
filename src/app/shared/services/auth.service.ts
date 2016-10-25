@@ -21,6 +21,7 @@ export class AuthService {
     localStorage.clear();
   }
   registerNewUser(user:User){
+    console.log(user);
     const body = JSON.stringify(user);
     const headers = new Headers({'Content-Type': 'application/json'});
     this._http.post('/user', body, {headers: headers})

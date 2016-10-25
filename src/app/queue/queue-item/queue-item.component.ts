@@ -16,7 +16,9 @@ branch:string = "Test-Branch";
 
   ngOnInit() {
   }
-  delete(){
-
+  onDelete(){
+    this._queueService.removeMember(this.queueMember).subscribe(
+      result=>console.log(result)
+    );
   }
 }
