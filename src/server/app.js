@@ -46,6 +46,7 @@ var db = mongoose.connection;
 mongoose.Promise = global.Promise;
 
 //routes
+app.use('/users-api', userRoutes);
 app.use('/queue-api', queueRoutes);
 app.use('/', appRoutes);
 // app.use('/message',messageRoutes);

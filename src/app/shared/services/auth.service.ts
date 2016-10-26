@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http} from '@angular/http';
+import { Headers, Http, Response} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { User } from '../models/user';
@@ -7,13 +7,12 @@ import { User } from '../models/user';
 export class AuthService {
 
   constructor(private _http: Http) { }
-  login(user: User){
+  login(user: User):Observable<any>{
     const body = JSON.stringify(user);
     const headers = new Headers({'Content-Type': 'application/json'});
-    this._http.post('/user/signin', body, {headers: headers})
-    .map(response=>{
-      console.log(response.json());
-      response.json()
+    return this._http.post('/users-api/signin', body, {headers: headers})
+    .map((response: Response)=>{
+      response.json();
     })
     .catch(error=>Observable.throw(error.json()));
   }
@@ -21,11 +20,10 @@ export class AuthService {
     localStorage.clear();
   }
   registerNewUser(user:User):Observable<any>{
-    console.log(user);
     const body = JSON.stringify(user);
     const headers = new Headers({'Content-Type': 'application/json'});
-    return this._http.post('/user', body, {headers: headers})
-    .map(response=>{
+    return this._http.post('/users-api', body, {headers: headers})
+    .map((response: Response)=>{
       response.json()
     })
     .catch(error=>Observable.throw(error.json()));

@@ -11,10 +11,10 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="firstName" class="col-lg-3 control-label">Last Name</label>
+        <label for="lastName" class="col-lg-3 control-label">Last Name</label>
         <div class="col-lg-7">
-          <input class="form-control" type="firstName" name="firstName" value="" formControlName="firstName">
-          <div class="error" *ngIf="isErrorVisible('firstName', 'required')">
+          <input class="form-control" type="lastName" name="lastName" value="" formControlName="lastName">
+          <div class="error" *ngIf="isErrorVisible('lastName', 'required')">
             Please enter your last name
           </div>
         </div>
@@ -25,7 +25,7 @@
           <div class="col-lg-7">
             <input class="form-control" type="email" name="email" value="" formControlName="email">
             <div class="error" *ngIf="isErrorVisible('email', 'required')">
-              Please enter your name
+              Please enter a valid e-mail
             </div>
           </div>
       </div>
@@ -53,7 +53,7 @@
       </div> -->
       <div class="form-group">
         <div class="col-lg-9 col-lg-offset-3">
-          <button type="submit" class="btn btn-primary submit" [disabled]="!form.valid" (click)="login()">Login</button>
+          <button type="submit" class="btn btn-primary submit" [disabled]="!form.valid" (click)="onSubmit()">Login</button>
         </div>
       </div>
 

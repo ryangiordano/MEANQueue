@@ -13,5 +13,7 @@ export class NavComponent implements OnInit {
   }
   ngOnInit() {
   }
-
+  isLoggedIn(){
+    return this._authService.isLoggedIn();
+  }
 }
