@@ -6,7 +6,7 @@ import { AuthService } from '../shared/services/auth.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-
+  userData;
   constructor(private _authService: AuthService) { }
   logout(){
     return this._authService.logout();
@@ -16,4 +16,5 @@ export class NavComponent implements OnInit {
   isLoggedIn(){
     return this._authService.isLoggedIn();
   }
+
 }

@@ -16,6 +16,7 @@ export class LoginFormComponent implements OnInit {
       'password': ['', Validators.required]
     })
   }
+
   onSubmit(){
     const user = new User(null, null,this.form.value.email, this.form.value.password,null, null);
     this._authService.login(user)
@@ -24,7 +25,8 @@ export class LoginFormComponent implements OnInit {
         console.log(data);
         localStorage.setItem('token', data.token);
         localStorage.setItem('userId', data.userId);
-        // this.router.navigate(['/queue']);
+
+        this.router.navigate(['/queue']);
       },
       error=>{
         console.error(error);
@@ -36,5 +38,6 @@ export class LoginFormComponent implements OnInit {
   }
   ngOnInit() {
   }
+
 
 }

@@ -19,18 +19,25 @@ export class RegisterFormComponent implements OnInit {
     })
   }
   onSubmit(){
-    const user = new User(this.form.value.firstName, this.form.value.lastName, this.form.value.email, this.form.value.password, 'BANK', 'BRANCH' );
+    const user = new User(
+      this.form.value.firstName,
+      this.form.value.lastName,
+      this.form.value.email,
+      this.form.value.password,
+      'BANK',
+      'BRANCH' );
     this._authService.registerNewUser(user)
     .subscribe(
       data => {
         console.log(data);
         this.form.reset();
-      //   this._authService.login(user).subscribe(data=>{
-      //     console.log(data);
-      //     console.log("Login succeeded");
-      //     this.router.navigate(['/queue']);
-      //   },
-      // error=> console.error(error));
+        this._authService.login(user).subscribe(data=>{
+          console.log("Login succeeded");
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('userId', data.userId);
+          this.router.navigate(['/queue']);
+        },
+      error=> console.error(error));
       },
       error=> console.error(error)
     );
