@@ -17,8 +17,8 @@ var schema = new Schema({
     type: String,
     required: true
   },
-  bankId: String,
-  branchId: String
+  bank: String,
+  branch: String
 });
 
 

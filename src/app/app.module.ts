@@ -9,6 +9,7 @@ import { RouterConfig } from './router.config';
 import { AuthService } from './shared/services/auth.service';
 import { QueueService } from './shared/services/queue.service';
 import { ErrorService } from './shared/services/error.service';
+import { BranchService} from './shared/services/branch.service';
 
 import { AppComponent } from './app.component';
 import { ErrorComponent } from './error/error.component';
@@ -22,6 +23,10 @@ import { LoginComponent } from './auth/login/login.component';
 import { LoginFormComponent } from './auth/login-form/login-form.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { RegisterFormComponent } from './auth/register-form/register-form.component';
+
+import { AdminComponent} from './admin/admin.component';
+import { BranchComponent } from './branch/branch.component';
+import { BranchFormComponent} from './admin/branch-form/branch-form.component';
 
 import { QueueFormComponent } from './queue/queue-form/queue-form.component';
 import { QueueListComponent } from './queue/queue-list/queue-list.component';
@@ -42,7 +47,10 @@ import { QueueItemComponent } from './queue/queue-item/queue-item.component';
     RegisterFormComponent,
     QueueFormComponent,
     QueueListComponent,
-    QueueItemComponent
+    QueueItemComponent,
+    AdminComponent,
+    BranchComponent,
+    BranchFormComponent
   ],
   imports: [
     BrowserModule,

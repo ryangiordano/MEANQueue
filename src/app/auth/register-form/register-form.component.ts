@@ -24,8 +24,8 @@ export class RegisterFormComponent implements OnInit {
       this.form.value.lastName,
       this.form.value.email,
       this.form.value.password,
-      'BANK',
-      'BRANCH' );
+      'Ryan\'s Bank',
+      this.form.value.branch );
     this._authService.registerNewUser(user)
     .subscribe(
       data => {

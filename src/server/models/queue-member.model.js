@@ -11,7 +11,7 @@ var schema = new Schema({
   },
   bankId: String,
   branchId: String,
-  concluded: Boolean,
+  concluded: String,
   queueId: String
 });
 

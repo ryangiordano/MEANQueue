@@ -5,7 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent} from './auth/register/register.component';
-
+import { AdminComponent } from './admin/admin.component';
 export const RouterConfig: Routes= [
   {
     path: 'queue',
@@ -22,6 +22,10 @@ export const RouterConfig: Routes= [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'admin',
+    component: AdminComponent
   },
   {
     path: '',
