@@ -5,6 +5,7 @@ import 'rxjs/Rx';
 import { User } from '../models/user';
 @Injectable()
 export class AuthService {
+  user:User;
   constructor(private _http: Http) { }
   login(user: User):Observable<any>{
     const body = JSON.stringify(user);

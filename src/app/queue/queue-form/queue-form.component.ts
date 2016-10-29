@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import {Queue } from '../../shared/models/queue';
 import { QueueService } from '../../shared/services/queue.service';
 import { ErrorService} from '../../shared/services/error.service';
+import { BranchService} from '../../shared/services/branch.service';
+import { Branch } from '../../shared/models/branch';
 @Component({
   selector: 'app-queue-form',
   templateUrl: './queue-form.component.html',
@@ -11,7 +13,7 @@ import { ErrorService} from '../../shared/services/error.service';
 })
 export class QueueFormComponent implements OnInit {
   queue:Queue = null;
-
+  branches:Branch[];
   form: FormGroup;
   formOptions =[
   {
@@ -27,25 +29,31 @@ export class QueueFormComponent implements OnInit {
     name: "Reason Four"
   }
 ]
-  constructor(private formBuilder: FormBuilder, private _queueService: QueueService, private _errorService: ErrorService) {
+  constructor(private formBuilder: FormBuilder, private _queueService: QueueService, private _errorService: ErrorService, private _branchService: BranchService) {
     this.form = this.formBuilder.group({
       'name':['', Validators.required],
       'reason':['', Validators.required],
       'bankId': ['BANK'],
       'concluded': [false],
-      'branchId': ['BRANCH']
+      'branch': ['',Validators.required ]
     })
   }
 
   ngOnInit() {
-
+    this._branchService.getBranches().subscribe(
+      data=>{
+        this.branches = data;
+      },
+      error=>console.error(error)
+    )
   }
   onSubmit(){
-    const queueMember: Queue = new Queue(this.form.value.name, this.form.value.reason, this.form.value.bankId, this.form.value.concluded, this.form.value.branchId, null);
+    const queueMember: Queue = new Queue(this.form.value.name, this.form.value.reason, this.form.value.bank, this.form.value.concluded, this.form.value.branch, null);
     this._queueService.addMember(queueMember)
     .subscribe(
       data=>{
-        this._queueService.queueMembers.push(data)
+        this._queueService.queueMembers.push(data);
+        this.form.reset();
       },
       error=>this._errorService.handleError(error)
     );

@@ -4,28 +4,47 @@ var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 
 var User = require('../models/user.model');
+var Branch = require('../models/branch.model');
 
 router.post('/', function(req,res,next){
-  var user = new User({
-    email: req.body.email,
-    password: bcrypt.hashSync(req.body.password,10),
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    branchId: req.body.branchId,
-    bankId: req.body.bankId
-  });
-  user.save(function(err, result){
+  Branch.findById(req.body.branchId, function(err, branch){
     if(err){
-      return res.status(404).json({
-        title: 'An error occurred within the Users page',
+      return res.status(500).json({
+        title: 'Must create a branch and assign the user to a branch.',
         error: err
       });
     }
-    res.status(200).json({
-      message: "Successfully created user",
-      obj: result
+    var user = new User({
+      email: req.body.email,
+      password: bcrypt.hashSync(req.body.password,10),
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      branchId: req.body.branchId,
+      bankId: req.body.bankId
+    });
+    user.save(function(err, result){
+      if(err){
+        return res.status(404).json({
+          title: 'An error occurred within the Users page',
+          error: err
+        });
+      }
+      branch.employees.push(result);
+      branch.save(function(err, result){
+        if(err){
+          return res.status(404).json({
+            title: 'An error occurred when saving the user to a branch\'s employee array',
+            error: err
+          });
+        }
+      });
+      res.status(200).json({
+        message: "Successfully created user",
+        obj: result
+      });
     });
   });
+
 });
 
 router.post('/signin', function(req,res,next){

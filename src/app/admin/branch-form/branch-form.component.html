@@ -1,3 +1,16 @@
-<p>
-  branch-form works!
-</p>
+<legend>Add a branch</legend>
+<form class="form-group" [formGroup]="form" novalidate>
+  <fieldset>
+    <div class="form-group row">
+      <label for="name" class="col-lg-2 control-label">Branch Name</label>
+      <div class="col-lg-8">
+        <input class="form-control" type="text" name="name" value="" formControlName="name">
+        <div class="error" *ngIf="isErrorVisible('name', 'required')">
+          Please enter a branch name
+        </div>
+      </div>
+
+    </div>
+    <button type="button" name="button" class="btn btn-primary" [disabled]="!form.valid" (click)="onSubmit()">Add Branch</button>
+</fieldset>
+</form>

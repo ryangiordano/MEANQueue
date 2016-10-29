@@ -15,7 +15,7 @@ export class QueueService {
       const data = response.json().obj;
       let objs: any[] = [];
       for (let i = 0; i < data.length; i++) {
-        let queue = new Queue( data[i].name, data[i].reason, 'BANK', false, "BRANCH",data[i]._id);
+        let queue = new Queue( data[i].name, data[i].reason, data[i].bankId, false, data[i].branchId,data[i]._id);
         objs.push(queue)
       };
       return objs;

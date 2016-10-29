@@ -59,7 +59,7 @@ import { QueueItemComponent } from './queue/queue-item/queue-item.component';
     HttpModule,
     RouterModule.forRoot(RouterConfig)
   ],
-  providers: [AuthService, QueueService, ErrorService],
+  providers: [AuthService, QueueService, ErrorService, BranchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

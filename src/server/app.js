@@ -11,6 +11,7 @@ var engine = require('consolidate');
 var appRoutes = require('./routes/appRoutes');
 var queueRoutes = require('./routes/queue');
 var userRoutes = require('./routes/users');
+var branchRoutes = require('./routes/branches');
 
 var app = express();
 app.set('port', (process.env.PORT || 3000));
@@ -46,6 +47,7 @@ var db = mongoose.connection;
 mongoose.Promise = global.Promise;
 
 //routes
+app.use('/branch-api', branchRoutes);
 app.use('/users-api', userRoutes);
 app.use('/queue-api', queueRoutes);
 app.use('/', appRoutes);

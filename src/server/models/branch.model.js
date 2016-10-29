@@ -5,18 +5,18 @@ var schema = new Schema({
     type: String,
     required: true
   },
-  employees: {
-    type: Array,
-    required: false
-  },
-  queueMembers: {
-    type: Array,
-    required: false
-  },
+  employees: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  queueMembers: [{
+    type: Schema.Types.ObjectId,
+    ref: 'QueueMember'
+  }],
   address: {
     type: String,
     required: false
   }
-})
+});
 
 module.exports = mongoose.model('Branch', schema);

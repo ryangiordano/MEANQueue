@@ -11,10 +11,7 @@ import { Router } from '@angular/router';
 export class LoginFormComponent implements OnInit {
   form: FormGroup;
   constructor(private _authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
-    this.form = this.formBuilder.group({
-      'email': ['',[Validators.required, Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")]],
-      'password': ['', Validators.required]
-    })
+
   }
 
   onSubmit(){
@@ -37,6 +34,10 @@ export class LoginFormComponent implements OnInit {
     return this.form.controls[field].dirty && this.form.controls[field].errors && this.form.controls[field].errors[error];
   }
   ngOnInit() {
+    this.form = this.formBuilder.group({
+      'email': ['',[Validators.required, Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")]],
+      'password': ['', Validators.required]
+    })
   }
 
 
