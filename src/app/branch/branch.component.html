@@ -1,3 +1,6 @@
-<p>
-  branch works!
-</p>
+<div *ngFor="let branch of branches" class="panel panel-primary">
+<div class="panel-heading">
+  <h5>{{branch.name}}</h5>
+</div>
+    <app-queue-item *ngFor="let queueMember of queueMembers | branchFilter: branch.branchId" [queueMember]="queueMember"></app-queue-item>
+</div>

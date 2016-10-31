@@ -31,6 +31,8 @@ import { QueueFormComponent } from './queue/queue-form/queue-form.component';
 import { QueueListComponent } from './queue/queue-list/queue-list.component';
 import { QueueItemComponent } from './queue/queue-item/queue-item.component';
 
+import { BranchFilterPipe} from './shared/pipes/branch-filter.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +50,8 @@ import { QueueItemComponent } from './queue/queue-item/queue-item.component';
     QueueItemComponent,
     AdminComponent,
     BranchComponent,
-    BranchFormComponent
+    BranchFormComponent,
+    BranchFilterPipe
   ],
   imports: [
     BrowserModule,
