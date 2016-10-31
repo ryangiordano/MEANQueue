@@ -33,10 +33,8 @@ export class RegisterFormComponent implements OnInit {
     this._authService.registerNewUser(user)
     .subscribe(
       data => {
-        console.log(data);
         this.form.reset();
         this._authService.login(user).subscribe(data=>{
-          console.log("Login succeeded");
           localStorage.setItem('token', data.token);
           localStorage.setItem('userId', data.userId);
           this.router.navigate(['/queue']);
@@ -53,7 +51,6 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit() {
     this._branchService.getBranches().subscribe(
       data=>{
-        console.log(data);
         this.branches = data;
       },
       error=>{

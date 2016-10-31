@@ -72,10 +72,25 @@ router.post('/signin', function(req,res,next){
       res.status(200).json({
         message:'Successfully logged in',
         token:token,
-        userId: user._id
+        userId: user._id,
+        user: user
       });
   });
 });
 
+router.post('/findone',function(req,res,next){
+  User.findById(req.body.userId, function(err, user){
+    if(err){
+      return res.status(500).json({
+        title: 'An error occurred',
+        error: err
+      });
+    }
+    return res.status(200).json({
+      message: 'Here is your user',
+      user: user
+    });
+  });
+});
 
 module.exports = router;

@@ -13,13 +13,12 @@ export class LoginFormComponent implements OnInit {
   constructor(private _authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
 
   }
-
   onSubmit(){
     const user = new User(null, null,this.form.value.email, this.form.value.password,null, null);
     this._authService.login(user)
     .subscribe(
       data=>{
-        console.log(data);
+
         localStorage.setItem('token', data.token);
         localStorage.setItem('userId', data.userId);
 

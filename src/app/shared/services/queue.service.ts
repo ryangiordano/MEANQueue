@@ -8,11 +8,16 @@ import {Observable} from 'rxjs/Observable';
 export class QueueService {
 
   constructor(private _http: Http) { }
+
+
   queueMembers: Queue[] = [];
+
+
   getMembers() {
-    return this._http.get('/queue-api').map(response => {
-      // return this._http.get('https://thedaruma.github.io/MEANQueue/queue').map(response=>{
+    return this._http.get('/queue-api')
+    .map(response => {
       const data = response.json().obj;
+      //objects is an array of queue objects
       let objs: any[] = [];
       for (let i = 0; i < data.length; i++) {
         let queue = new Queue( data[i].name, data[i].reason, data[i].bankId, false, data[i].branchId,data[i]._id);
@@ -22,6 +27,8 @@ export class QueueService {
     })
       .catch(error => Observable.throw(error.json()));
   };
+
+
   addMember(queueMember: Queue) {
     const body = JSON.stringify(queueMember);
     const headers = new Headers({ 'Content-Type': 'application/json' });
@@ -37,6 +44,9 @@ export class QueueService {
       .catch(error => Observable.throw(error.json()));
 
   }
+
+
+
   removeMember(queueMember: Queue) {
     console.log(queueMember);
     this.queueMembers.splice(this.queueMembers.indexOf(queueMember), 1);

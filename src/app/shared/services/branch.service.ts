@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import {Branch} from '../models/branch';
 @Injectable()
 export class BranchService {
-
+  branches: Branch[] = [];
   constructor(private _http: Http) {
 
   }
@@ -23,8 +23,10 @@ export class BranchService {
       let objs: any[] =[];
       for(let i = 0; i<data.length; i++){
         let branch = new Branch(data[i].name,null, null, null, data[i]._id);
+        this.branches.push(branch);
         objs.push(branch);
       };
+
       return objs;
     }).catch(error=>Observable.throw(error.json()));
   }

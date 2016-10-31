@@ -14,7 +14,6 @@ import { BranchService} from './shared/services/branch.service';
 import { AppComponent } from './app.component';
 import { ErrorComponent } from './error/error.component';
 import { QueueComponent } from './queue/queue.component';
-import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
 
@@ -37,7 +36,6 @@ import { QueueItemComponent } from './queue/queue-item/queue-item.component';
     AppComponent,
     ErrorComponent,
     QueueComponent,
-    AboutComponent,
     HomeComponent,
     NavComponent,
     AuthComponent,

@@ -15,6 +15,8 @@
       <ul class="nav navbar-nav navbar-right">
 
         <li *ngIf="isLoggedIn()"><a (click)="logout()" style="cursor:pointer">Logout</a></li>
+        <!-- <li><a (click)="findUser()" style="cursor:pointer">Find User</a></li> -->
+        <li *ngIf="user"><a>{{user.firstName}}</a></li>
       </ul>
     </div>
   </div>
